@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <span> <a routerLink=""> My messages </a> </span>
+
+  <ul>
+    <ng-container *ngIf="(userAuthenticated$ | async); else noAuth">
+      <ng-container *ngTemplateOutlet="auth"></ng-container>
+    </ng-container>
+  </ul>
+</mat-toolbar>
+
+<ng-template #auth>
+  <li>
+    <a mat-button routerLink="/create" routerLinkActive="accent">
+      Create a post</a>
+  </li>
+  <li>
+    <button mat-button (click)="obLogout()">Logout</button>
+  </li>
+</ng-template>
+
+<ng-template #noAuth>
+  <li>
+    <a mat-button routerLink="/auth/login" routerLinkActive="accent"> Login</a>
+  </li>
+  <li>
+    <a mat-button routerLink="/auth/signup" routerLinkActive="accent"> Sign up</a>
+  </li>
+</ng-template>
